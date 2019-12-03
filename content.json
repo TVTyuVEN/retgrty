@@ -1,0 +1,110 @@
+﻿
+
+url : /v3/snaapp/wlan/wlanDetect//上传的JSON格式，不检测项的数据不上报
+
+{
+	###----------------自测部分：模块名称，方法名称，必选    ----------------###
+		
+    ###----------------第一部分：基本信息，必选（除location）----------------###
+	
+			"msgType":"2",  // 1：SSID列表  2：检测数据   3：拓扑节点Ping结果
+			"TIME":"2019-02-25 15:03:25:493",	//TIME UTC格式
+			
+			"studentNum":"01456",          //学号
+            "contactInfo":"1235647899",    //学生联系方式，电话或者邮箱
+            "location":"a栋11层000房间门口",//测试位置信息
+	
+	
+	###----------------第二部分：客户端信息，必选----------------###
+	
+			"staModelNum":"MI 6",//终端型号
+            "staVendor":"Xiaomi",//终端厂商
+            "staMAC":"508f-4cf5-7998",//终端mac
+	
+	
+	###----------------第三部分：无线网络信息，终端成功关联时必选----------------###	
+	
+			"SSID":"WLAN_N602",	//ssid
+            "BSSID":"6cb7-49fa-1a0b",	//bssid
+            "RI":1,//频率   1表示2.4GHz  2表示5GHz
+			"rate":72,//速率
+            "aveSignal":-37,//平均信号强度
+            "CH":11,//信道
+            "bandwidth":"20Mhz",//带宽
+			"netIP":"106.121.141.202",//外网IP
+            "network":"北京市北京市 电信"//运营商名称		
+	
+	
+	###----------------第四部分：检测数据，msgType=2 时上报----------------###
+	
+			"testFailStage:"1"", //检测失败的阶段，1：关联；   2：DHCP；3：网关Ping失败
+			                                       4：DNS服务器Ping失败   5：DNS解析失败  6：外网访问失败 
+												   7：外网测速失败       0：全部检测成功
+			"staAssoc":507,//终端接入时长(ms),为0时，表示接入失败
+			"ipDHCP":507,//DHCP获取IP时长(ms),为0时，表示DHCP失败
+			"localIP":"192.168.8.102",//内网IP,IP地址为0.0.0.0时，表示DHCP IP地址失败
+			
+			"akm":"PSK",//akm mode             				
+            "secIe":"WPA2",	//security ie 
+			
+			"GWIP":"192.168.8.1",//网关 IP地址为0.0.0.0时，表示IP地址获取失败
+            "DNSServer":"192.168.8.1",//dnsServer
+            "dhcpServer":"192.168.8.1",//dhcpServer
+			
+			"GWPing":19.309,//网关连通耗时 double
+			"GWARPMac":6cb7-49fa-1a0b,//网关的arp表项中的MAC，网关Ping失败时发送
+            "dnsPing":2.733,//dns连通耗时 double
+            "dhcpPing":4.416,//dhcp连通耗时 double
+			
+			"dnsPingLost":25%,//ping dns丢包率
+            "GWPingLost":50%,//ping网关丢包率
+            "dhcpPingLost":0%,//ping dhcp丢包率
+			
+			"netPing":37.372,//baidu连通耗时
+			"netPingLost":25%,//baidu丢包率
+            "webLoad":3712,//网页加载时长
+			"testServer": "beijing broadband",  //测速服务器地址
+			"downSpeed":4.88,//下载速度
+            "downSpeed":4.88,//下载速度     
+            "uploadSpeed":1.95,	//上传速度
+    
+	
+    ###----------------第五部分：SSID列表，msgType=1 时上报----------------###  
+	
+			"BSSIDListCnt":2,//终端搜索到的BSSID个数
+            "BSSIDList":[
+                {
+
+                            "BSSID":"22ab-3765-2c30",
+                            "SSID":"pianomiao",
+                            "signal":-80 //信号强度
+
+                },
+                {
+                    
+                            "BSSID":"5c03-3938-d9bb",
+                            "SSID":"APP-OASSIS",
+                            "signal":-33
+                },
+               。。。。。
+            ],
+    
+	
+	###----------------第六部分：拓扑节点Ping结果，msgType=3 时上报----------------###	
+	
+			"nodePingRes":[
+                {
+
+                            "nodeIP":"192.168.2.3", //节点IP
+                            "pingTime":"12.3",    //Ping节点耗时，单位：ms
+
+                },
+                {
+                    
+                            "nodeIP":"192.168.1.1", //节点IP
+                            "pingTime":"12.3",    //Ping节点耗时，单位：ms
+                },
+               。。。。。
+            ],
+}
+
