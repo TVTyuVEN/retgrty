@@ -1,2 +1,0 @@
-# retgrty
-document
