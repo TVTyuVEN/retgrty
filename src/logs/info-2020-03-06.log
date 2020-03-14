@@ -1,1 +1,0 @@
-2020-03-06 16:51:27,833 Thread-3 ERROR /home/share/docker/time_select/digitalTwins/src/apps/v1_0/application.py 590 : 'AppGroup' object has no attribute 'phyExcludeNodeAndLink'
